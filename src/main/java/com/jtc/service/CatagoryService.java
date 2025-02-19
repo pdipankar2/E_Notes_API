@@ -15,4 +15,8 @@ public interface CatagoryService {
 
 	public List<CatagoryResponse> getActiveCatagory();
 
+	public CatagoryDTO getCatagoryById(Integer id);
+
+	public Boolean deletedcatagoryById(Integer id);
+
 }
