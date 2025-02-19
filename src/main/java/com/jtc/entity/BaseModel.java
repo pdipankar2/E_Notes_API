@@ -16,52 +16,64 @@ public class BaseModel {
 
 	private Boolean isActive;
 	private Boolean isDelete;
-	
-	private Integer createdon;
-	
+
+	private Integer createdBy;
+
 	@CreationTimestamp
-	private Date createdDate;
-	private Integer updateon;
+	private Date createdOn;
+
+	private Integer upadtedBy;
+
 	@UpdateTimestamp
-	private Date updateDate;
+	private Date updateOn;
+
 	public Boolean getIsActive() {
 		return isActive;
 	}
+
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
+
 	public Boolean getIsDelete() {
 		return isDelete;
 	}
+
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}
-	public Integer getCreatedon() {
-		return createdon;
+
+	public Integer getCreatedBy() {
+		return createdBy;
 	}
-	public void setCreatedon(Integer createdon) {
-		this.createdon = createdon;
+
+	public void setCreatedBy(Integer createdBy) {
+		this.createdBy = createdBy;
 	}
-	public Date getCreatedDate() {
-		return createdDate;
+
+	public Date getCreatedOn() {
+		return createdOn;
 	}
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
 	}
-	public Integer getUpdateon() {
-		return updateon;
+
+	public Integer getUpadtedBy() {
+		return upadtedBy;
 	}
-	public void setUpdateon(Integer updateon) {
-		this.updateon = updateon;
+
+	public void setUpadtedBy(Integer upadtedBy) {
+		this.upadtedBy = upadtedBy;
 	}
-	public Date getUpdateDate() {
-		return updateDate;
+
+	public Date getUpdateOn() {
+		return updateOn;
 	}
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
+
+	public void setUpdateOn(Date updateOn) {
+		this.updateOn = updateOn;
 	}
-	
-	
-	
+
 	
 }

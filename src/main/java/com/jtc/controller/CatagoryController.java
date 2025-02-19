@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jtc.dto.CatagoryDTO;
+import com.jtc.dto.CatagoryResponse;
 import com.jtc.entity.Catagory;
+import com.jtc.repo.CatagoryRepo;
 import com.jtc.service.CatagoryService;
 
 @RestController
@@ -24,7 +27,7 @@ public class CatagoryController {
 	private CatagoryService catagoryService;
 
 	@PostMapping("/save")
-	public ResponseEntity<?> saveCatagory(@RequestBody Catagory catagory) {
+	public ResponseEntity<?> saveCatagory(@RequestBody CatagoryDTO catagory) {
 
 		boolean saveCatagory = catagoryService.saveCatagory(catagory);
 		if (saveCatagory) {
@@ -50,4 +53,24 @@ public class CatagoryController {
 
 	}
 
+	
+	@GetMapping("/active-catagory")
+	public ResponseEntity<?> getActiveCatagory() {
+
+		//List<CatagoryResponse> allCatagory = (List<CatagoryResponse>) catagoryService.getActiveCatagory();
+		
+		List<CatagoryResponse> activeCatagory = catagoryService.getActiveCatagory();
+		
+		if (ObjectUtils.isEmpty(activeCatagory)) {
+
+			return ResponseEntity.noContent().build();
+			
+		} else {
+			return new ResponseEntity<>(activeCatagory, HttpStatus.OK);
+		}
+
+	}
+	
+	
+	
 }
