@@ -2,6 +2,7 @@ package com.jtc.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,6 @@ public class CatagoryServiceImpl implements CatagoryService {
 		catagory.setDescription(catagoryDTO.getDescription());
 		catagory.setIsActive(catagoryDTO.getIsActive());
 
-		
 		catagory.setIsDelete(false);
 		catagory.setCreatedBy(1);
 		catagory.setCreatedOn(new Date());
@@ -46,18 +46,51 @@ public class CatagoryServiceImpl implements CatagoryService {
 	@Override
 	public List<Catagory> getAllCatagory() {
 
-		List<Catagory> all = catagoryRepo.findAll();
+		//List<Catagory> all = catagoryRepo.findAll();
+		List<Catagory> all=	catagoryRepo.findByIsDeleteFalse();
 
 		return all;
 	}
 
 	@Override
 	public List<CatagoryResponse> getActiveCatagory() {
-		List<Catagory> catagorys = catagoryRepo.findByIsActiveTrue();
+		List<Catagory> catagorys = catagoryRepo.findByIsActiveTrueAndIsDeleteFalse();
 
 		List<CatagoryResponse> catagorylist = catagorys.stream().map(cat -> mapper.map(cat, CatagoryResponse.class))
 				.toList();
 		return catagorylist;
+	}
+
+	@Override
+	public CatagoryDTO getCatagoryById(Integer id) {
+
+		Optional<Catagory> findByCatagory = catagoryRepo.findByIdAndIsDeleteFalse(id);
+
+		if (findByCatagory.isPresent()) {
+
+			Catagory catagory = findByCatagory.get();
+			return mapper.map(catagory, CatagoryDTO.class);
+
+		}
+
+		return null;
+	}
+
+	@Override
+	public Boolean deletedcatagoryById(Integer id) {
+
+
+		Optional<Catagory> FindByCatagory = catagoryRepo.findById(id);
+		
+		if(FindByCatagory.isPresent()) {
+			Catagory catagory=FindByCatagory.get();
+			catagory.setIsDelete(true);
+			catagoryRepo.save(catagory);
+			return true;
+		}
+		
+		
+		return false;
 	}
 
 }
