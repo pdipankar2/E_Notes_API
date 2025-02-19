@@ -2,6 +2,9 @@ package com.jtc.entity;
 
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,9 +16,13 @@ public class BaseModel {
 
 	private Boolean isActive;
 	private Boolean isDelete;
+	
 	private Integer createdon;
+	
+	@CreationTimestamp
 	private Date createdDate;
 	private Integer updateon;
+	@UpdateTimestamp
 	private Date updateDate;
 	public Boolean getIsActive() {
 		return isActive;

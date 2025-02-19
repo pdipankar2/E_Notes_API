@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.CollectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,19 +35,19 @@ public class CatagoryController {
 		}
 
 	}
-	
-	
-	
-	@GetMapping("/catagory")
+
+	@GetMapping("/get")
 	public ResponseEntity<?> getAllCatagory() {
 
-	 List<Catagory> allCatagory = catagoryService.getAllCatagory();
-	return null;
-	
-		
+		List<Catagory> allCatagory = catagoryService.getAllCatagory();
+		if (ObjectUtils.isEmpty(allCatagory)) {
+
+			return ResponseEntity.noContent().build();
+			
+		} else {
+			return new ResponseEntity<>(allCatagory, HttpStatus.OK);
+		}
 
 	}
-	
-	
 
 }
