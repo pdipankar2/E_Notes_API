@@ -43,6 +43,8 @@ public class CatagoryController {
 
 	@GetMapping("/get")
 	public ResponseEntity<?> getAllCatagory() {
+		
+		
 
 		List<Catagory> allCatagory = catagoryService.getAllCatagory();
 		if (ObjectUtils.isEmpty(allCatagory)) {
