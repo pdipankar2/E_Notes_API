@@ -5,12 +5,25 @@ import java.util.Date;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.val;
+
 public class CatagoryDTO {
 
 	private Integer id;
-	private String name;
-	private String description;
+	
+	@NotBlank(message = "Name must not be blank")
+	@Size(min = 5, max = 100, message = "Name must be between 1 and 100 characters")
 
+	private String name;
+
+	@NotBlank(message = "Description must not be blank")
+	@Size(min = 5, max = 100, message = "Description must be between 1 and 100 characters")
+	private String description;
+	//@NotBlank
 	private Boolean isActive;
 
 	private Integer createdBy;
@@ -19,9 +32,6 @@ public class CatagoryDTO {
 	private Date createdOn;
 
 	private Integer upadtedBy;
-	
-	
-	
 
 	public CatagoryDTO(Integer id, String name, String description, Boolean isActive, Integer createdBy, Date createdOn,
 			Integer upadtedBy, Date updateOn) {
