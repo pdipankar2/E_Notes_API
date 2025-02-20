@@ -1,4 +1,4 @@
-package com.jtc.controller;
+ package com.jtc.controller;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.cglib.core.CollectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,8 @@ import com.jtc.entity.Catagory;
 import com.jtc.repo.CatagoryRepo;
 import com.jtc.service.CatagoryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/catagory")
 public class CatagoryController {
@@ -29,7 +32,7 @@ public class CatagoryController {
 	private CatagoryService catagoryService;
 
 	@PostMapping("/save")
-	public ResponseEntity<?> saveCatagory(@RequestBody CatagoryDTO catagory) {
+	public ResponseEntity<?> saveCatagory(@Valid @RequestBody CatagoryDTO catagory) throws Exception {
 
 		boolean saveCatagory = catagoryService.saveCatagory(catagory);
 		if (saveCatagory) {

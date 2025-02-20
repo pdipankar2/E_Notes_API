@@ -9,7 +9,7 @@ import com.jtc.repo.CatagoryRepo;
 
 public interface CatagoryService {
 	
-	public boolean saveCatagory(CatagoryDTO catagory);
+	public boolean saveCatagory(CatagoryDTO catagory) throws Exception;
 	
 	public List<Catagory> getAllCatagory();
 

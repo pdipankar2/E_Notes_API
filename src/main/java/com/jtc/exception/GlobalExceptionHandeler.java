@@ -1,7 +1,14 @@
 package com.jtc.exception;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -27,5 +34,14 @@ public class GlobalExceptionHandeler {
 		
 		return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
 	}
+	
+	
+	@ExceptionHandler(ValidationException.class)
+	public ResponseEntity<?> handelValidationExcepton(ValidationException e){
+		
+		return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+	}
+	
+	
 
 }
