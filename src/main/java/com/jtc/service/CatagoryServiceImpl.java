@@ -12,6 +12,7 @@ import org.springframework.util.ObjectUtils;
 import com.jtc.dto.CatagoryDTO;
 import com.jtc.dto.CatagoryResponse;
 import com.jtc.entity.Catagory;
+import com.jtc.exception.ExistDataException;
 import com.jtc.repo.CatagoryRepo;
 import com.jtc.validaton.Validaton;
 
@@ -30,6 +31,7 @@ public class CatagoryServiceImpl implements CatagoryService {
 	@Override
 	public boolean saveCatagory(CatagoryDTO catagoryDTO) throws Exception {
 
+		//validation check
 		validaton.CatagoryValidation(catagoryDTO);
 		
 		//Catagory catagory = new Catagory();
@@ -38,8 +40,15 @@ public class CatagoryServiceImpl implements CatagoryService {
 		//catagory.setIsActive(catagoryDTO.getIsActive());
 		//validation check
 		
+		//check catagory is exist or not
+		Boolean existsByName = catagoryRepo.existsByName(catagoryDTO.getName().trim());
 		
-		
+		if(existsByName) {
+			
+			//throw error
+			throw new ExistDataException("Catagory already exist");
+			
+		}
 		Catagory catagory = mapper.map(catagoryDTO, Catagory.class);
 
 		if (ObjectUtils.isEmpty(catagory.getId())) {
