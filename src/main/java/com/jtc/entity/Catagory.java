@@ -2,7 +2,10 @@ package com.jtc.entity;
 
 import java.util.Date;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,7 +19,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
+@EntityListeners(AuditingEntityListener.class)
 public class Catagory extends BaseModel {
 	
 	@Id
@@ -24,6 +27,27 @@ public class Catagory extends BaseModel {
 	private Integer id;
 	private String name;
 	private String description;
+	
+	
+	private Boolean isActive;
+	private Boolean isDelete;
+	
+	
+	
+	
+	
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 	public Integer getId() {
 		return id;
 	}
