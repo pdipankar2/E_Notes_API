@@ -42,6 +42,10 @@ public class GlobalExceptionHandeler {
 		return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
 	}
 	
-	
+	@ExceptionHandler(ExistDataException.class)
+	public ResponseEntity<?> handelExistDataException(ExistDataException e){
+		
+		return new ResponseEntity<>(e.getMessage(),HttpStatus.CONFLICT);
+	}
 
 }
