@@ -38,6 +38,21 @@ public class NotesDto {
 	@Column(insertable = false)
 
 	private Date updateOn;
+	
+	
+	private fileDto fileDetails;
+	
+	
+	
+	
+
+	public fileDto getFileDetails() {
+		return fileDetails;
+	}
+
+	public void setFileDetails(fileDto fileDetails) {
+		this.fileDetails = fileDetails;
+	}
 
 	public Integer getCreatedBy() {
 		return createdBy;
