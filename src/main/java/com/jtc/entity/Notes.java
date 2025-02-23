@@ -21,6 +21,11 @@ public class Notes extends BaseModel {
 	
 	@ManyToOne
 	private Catagory catagory;
+	
+	@ManyToOne
+	private FileDetails fielDetails;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -55,6 +60,10 @@ public class Notes extends BaseModel {
 		this.title = title;
 		this.description = description;
 		this.catagory = catagory;
+	}
+	public void setfileDetails(FileDetails fileDetails) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
